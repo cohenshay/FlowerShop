@@ -1,0 +1,13 @@
+<div>
+    <%if(users){ %>
+        <%users.map((user)=>  {%>
+            <p>
+                <%= user.name %>
+            </p>
+            <p>
+                <%= user.age %>
+            </p>
+            <%  })%>
+       <%  }%>
+
+</div>
