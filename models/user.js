@@ -1,28 +1,18 @@
 class User {
-  
-  constructor(fname,lname,age,id) {
-    this._id = id;
-    this._age = age;
-    this._fname = fname;
-    this._lname = lname;
+  constructor(id,fname, lname, address,email,contact,type, username, password,shopNumber) {
+    this.id = id;  
+    this.fname = fname;
+    this.lname = lname;
+    this.address = address; 
+    this.email = email;
+    this.contact = contact;
+    this.type = type;
+    this.username = username;
+    this.password = password;
+    this.shopNumber = shopNumber;
   }
-  set firstName(fname) {
-    this._fname = fname;
-  }
-  set lastName(lname) {
-    this._lname = lname;
-  }
-  set age(age) {
-    this._age = age;
-  }
-  get age() {
-    return this._age;
-  }
-  get name() {
-    return `${this._fname} ${this._lname}`;
-  }
-  get id() {
-    return `${this._id}`;
+  get fullname() {
+    return this.fname + " " + this.lname;
   }
 }
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- views/catalog.ejs -->
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header',{req}); %>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col-sm-8">
+                <%if(flowers){ %>
+                    <%flowers.map((flower)=>  {%>
+                        <div class=" flowerDiv">
+                            <img class="flowerImg" src=<%=flower.image %> alt= <%=flower.name %> >
+                                <p class="flowerParagraph">
+                                    <%=flower.name %>,
+                                        <%=flower.cost %>$
+                                </p>
+                        </div>
+                        <%  })}%>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>
