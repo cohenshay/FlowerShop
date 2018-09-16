@@ -1,10 +1,11 @@
-class Shop {
-    constructor(name,location,shopNumber) {
-      this.name = name;
-      this.location = location;
-      this.shopNumber = shopNumber;    
-    }
-   
-  }
-  
-  module.exports = Shop;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+const shopSchema = new Schema({
+  name: String,
+  location: String,
+
+  shopNumber: Number
+});
+
+mongoose.model("shops", shopSchema);

@@ -1,19 +1,16 @@
-class User {
-  constructor(id,fname, lname, address,email,contact,type, username, password,shopNumber) {
-    this.id = id;  
-    this.fname = fname;
-    this.lname = lname;
-    this.address = address; 
-    this.email = email;
-    this.contact = contact;
-    this.type = type;
-    this.username = username;
-    this.password = password;
-    this.shopNumber = shopNumber;
-  }
-  get fullname() {
-    return this.fname + " " + this.lname;
-  }
-}
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-module.exports = User;
+const userSchema = new Schema({
+  fname: String,
+  lname: String,
+  address: String,
+  email: String,
+  contact: String,
+  type: String,
+  username: String,
+  password: String,
+  shopNumber: Number
+});
+
+mongoose.model("users", userSchema);

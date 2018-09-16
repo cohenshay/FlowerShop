@@ -106,7 +106,7 @@ function updateRow() {
   }
   fetch(url, fetchData)
   .then(function() {
-    location.reload();
+    // location.reload();
   });
 }
 function addUser(){

@@ -1,10 +1,10 @@
-class Flower {
-    constructor(name,cost,image) {
-      this.name = name;
-      this.cost = cost;    
-      this.image = image;    
-    }
-   
-  }
-  
-  module.exports = Flower;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+const flowerSchema = new Schema({
+  name: String,
+  cost: Number,
+  image: String
+});
+
+mongoose.model("flowers", flowerSchema);
