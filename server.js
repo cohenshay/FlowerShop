@@ -5,6 +5,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const session = require("client-sessions");
 const mongoose = require("mongoose");
+const multer = require("multer");
+const crypto = require("crypto");
+const path = require("path");
 
 //models
 require("./models/shop");
@@ -13,7 +16,10 @@ require("./models/flower");
 
 //config and middlewares
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/flowerShop",{ useNewUrlParser: true });
+mongoose.connect(
+  "mongodb://localhost:27017/flowerShop",
+  { useNewUrlParser: true }
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
@@ -28,11 +34,21 @@ app.use(
   })
 );
 
+const storage = multer.diskStorage({
+  destination: "public/images/",
+  filename: function(req, file, callback) {
+    crypto.pseudoRandomBytes(16, function(err, raw) {
+      if (err) return callback(err);
+      callback(null, file.originalname + path.extname(file.originalname));
+    });
+  }
+});
+const upload = multer({ storage: storage });
+
 //model instances
 const User = mongoose.model("users");
 const Shop = mongoose.model("shops");
 const Flower = mongoose.model("flowers");
-
 
 //Pages
 app.get("/", (req, res) => {
@@ -99,6 +115,11 @@ app.get("/login", (req, res) => {
   res.render("pages/login", { req });
 });
 
+app.get("/accountDetails", async (req, res) => {
+  const user = await User.findById(req.session.user._id);
+  res.render("pages/accountDetails", { user,req });
+});
+
 // Login
 
 app.post("/login", async (req, res) => {
@@ -110,8 +131,7 @@ app.post("/login", async (req, res) => {
       if (req.body.password === currentUser.password) {
         // sets a cookie with the user's info
         req.session.user = currentUser;
-        res.redirect(200,"/");
-        //   res.render("pages/index",{req});
+        res.redirect(200, "/");
       } else {
         res
           .status(422)
@@ -128,6 +148,12 @@ app.get("/logout", (req, res) => {
   req.session.reset();
   res.render("pages/index", { req });
 });
+
+//SignIn
+app.get("/signIn", (req, res) => { 
+  res.render("pages/signIn", { req });
+});
+
 
 //UPDATE
 app.put("/updateUser", async (req, res) => {
@@ -175,7 +201,7 @@ app.post("/addUser", async (req, res) => {
       password
     } = req.body;
 
-    const newUser = new User({
+    let newUser = new User({
       fname,
       lname,
       address,
@@ -198,7 +224,21 @@ app.post("/addUser", async (req, res) => {
   }
 });
 
-
+app.post("/addFlower", upload.single("avatar"), (req, res) => {
+  if (!req.file) {
+    console.log("No file received");
+    return res.send({
+      success: false
+    });
+  } else {
+    console.log("file received");
+    const host = req.host;
+    const filePath = req.protocol + "://" + host + "/" + req.file.path;
+    return res.send({
+      filePath
+    });
+  }
+});
 
 //helpers
 

@@ -22,7 +22,7 @@
                             <h4>Users</h4>
                             <p data-placement="top"><button class="btn btn-primary" data-title="Add" data-toggle="modal"
                                     data-target="#add">Add User</button></p>
-                            <img src="../../public/images/refresh.jpg">
+                           
                             <div class="table-responsive">
 
                                 <textarea style="display:none" id="currentIdSelection"></textarea>
@@ -48,7 +48,7 @@
                                         <%users.filter(x=>x.type=="user").map((user,index)=>  {%>
 
 
-                                        <tr key=<%=index %>>
+                                        <tr class="userTable" key=<%=user.id %>>
                                             <td><input type="checkbox" class="checkthis" /></td>
                                             <td>
                                                 <%=user.id %>

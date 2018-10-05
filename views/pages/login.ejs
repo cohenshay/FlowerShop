@@ -14,16 +14,16 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="jumbotron">
-                    <form action="/login" method="post" id="my_form" onsubmit="return window.location.href = 'http://localhost:8080/'" action="return window.location.href = 'http://localhost:8080/';">
+                    <form id="my_form">
                         <div class="form-group">
-                            <label for="use rname">Email address</label>
+                            <label for="use rname">Username</label>
                             <input type="text" class="form-control" id="username" placeholder="Enter username">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="Enter Password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" onclick="sendForm()" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -43,22 +43,35 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script>
-    $("#my_form").submit(function (event) {
+    async function sendForm() {
 
-        event.preventDefault();
-        var post_url = $(this).attr("action"); //get form action url
-        var request_method = $(this).attr("method"); //get form GET/POST method
-        var form_data = {
-            username: event.target[0].value,
-            password: event.target[1].value
+        const url = 'http://localhost:8080/login';        
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        let data = {
+            username, password
         }
 
-        $.ajax({
-            url: post_url,
-            type: request_method,
-            data: form_data
-        }).done(function (response) { //
-            $("#server-results").html(response);
-        });
-    });
+        let fetchData = {
+            method: 'POST',
+            credentials: 'same-origin',
+            body: JSON.stringify(data),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }
+        try {
+          
+            const result = await fetch(url, fetchData);         
+          
+            if (result.status == 200) {
+               location.href="/";
+            }
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
 </script>

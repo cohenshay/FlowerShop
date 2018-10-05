@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<!-- views/signIn.ejs -->
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header',{req:req}); %>
+    </header>
+    <main>
+
+        <div class="row">
+
+
+           
+
+            <form class="col s12">
+                <div class="row">                   
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate" >
+                        <label for="first_name">First Name</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate" >
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="address" type="text" class="validate">
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate" >
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input  id="contact" type="text" class="validate" >
+                        <label for="contact">Contact</label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate" >
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="password" type="text" class="validate" >
+                        <label for="password">password</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="button" onclick="addUser()" name="action">Save
+
+                </button>
+
+            </form>
+
+           
+
+        </div>
+
+
+
+
+
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/scripts/signIn.js"></script>
+
+</html>

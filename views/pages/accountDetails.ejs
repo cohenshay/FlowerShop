@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<!-- views/accountDetails.ejs -->
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header',{req:req}); %>
+    </header>
+    <main>
+
+        <div class="row">
+
+
+            <%if(user){ %>
+
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled placeholder="Placeholder" id="id" type="text" class="validate" value="<%= user._id %>">
+                        <label for="id">ID</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="<%= user.fname %>">
+                        <label for="first_name">First Name</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate" value="<%= user.lname %>">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="address" type="text" class="validate" value="<%= user.address %>">
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate" value="<%= user.email %>">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="contact" type="text" class="validate" value="<%= user.contact %>">
+                        <label for="contact">Contact</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled id="status" type="text" class="validate" value="<%= user.type %>">
+                        <label for="status">Status</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate" value="<%= user.username %>">
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="password" type="text" class="validate" value="<%= user.password %>">
+                        <label for="password">password</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light" type="button" onclick="updateRow()" name="action">Save
+
+                </button>
+
+            </form>
+
+            <%  }%>
+
+        </div>
+
+
+
+
+
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/scripts/accoutnDetails.js"></script>
+
+</html>
