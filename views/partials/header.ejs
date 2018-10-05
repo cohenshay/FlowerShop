@@ -27,3 +27,13 @@
             </ul>
         </div>
     </nav>
+   
+    <% if (messages && messages.error) { %>
+        <div class="alert alert-danger"><%= messages.error %></div>  
+      <% } %>
+      <% if (messages && messages.info) { %>
+        <div class="alert alert-info"><%= messages.info %></div>  
+      <% } %>
+      <% if (messages && messages.success) { %>
+        <div class="alert alert-danger"><%= messages.success %></div>  
+      <% } %>

@@ -10,7 +10,9 @@ const userSchema = new Schema({
   type: String,
   username: String,
   password: String,
-  shopNumber: Number
+  shopNumber: Number,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 mongoose.model("users", userSchema);

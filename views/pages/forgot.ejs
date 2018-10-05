@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<!-- views/signIn.ejs -->
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body class="container">
+    <header>
+        <%- include('../partials/header',{req:req}); %>
+    </header>
+    <main>
+
+        <div class="row">
+
+
+            <form method="POST">
+                <h4>Forgot Password</h4>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input class="form-control" type="text" name="email" autofocus="autofocus"/>
+                </div>
+                <button class="btn btn-primary" type="submit">Reset Password</button>
+              </form>
+
+
+           
+
+        </div>
+
+
+
+
+
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+
+</html>
