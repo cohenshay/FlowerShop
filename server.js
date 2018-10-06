@@ -17,6 +17,7 @@ const flash = require('express-flash');
 require("./models/shop");
 require("./models/user");
 require("./models/flower");
+const config = require("./config/config");
 
 //config and middlewares
 mongoose.Promise = global.Promise;
@@ -196,8 +197,8 @@ app.post('/forgot', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport( {
         service: 'SendGrid',
         auth: {
-          user: 'cohenshay',
-          pass: 'pakobig1!'
+          user: config.SendGridUser,
+          pass: config.SendGridPassword
         }
       });
       var mailOptions = {
@@ -256,7 +257,7 @@ app.post('/reset/:token', function(req, res) {
         service: 'SendGrid',
         auth: {
           user: 'cohenshay',
-          pass: 'pakobig1!'
+          pass: ''
         }
       });
       var mailOptions = {
